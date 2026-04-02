@@ -32,6 +32,7 @@
             txtPW = new TextBox();
             btnLogin = new Button();
             txtID = new TextBox();
+            lblErrorMsg = new Label();
             SuspendLayout();
             // 
             // lblAppName
@@ -54,12 +55,13 @@
             txtPW.TabIndex = 3;
             txtPW.Text = "패스워드";
             txtPW.Enter += txtPW_Enter;
+            txtPW.KeyDown += txtPW_KeyDown;
             txtPW.Leave += txtPW_Leave;
             // 
             // btnLogin
             // 
             btnLogin.Font = new Font("맑은 고딕", 22.125F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            btnLogin.Location = new Point(235, 520);
+            btnLogin.Location = new Point(235, 579);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(255, 82);
             btnLogin.TabIndex = 1;
@@ -77,13 +79,27 @@
             txtID.TabIndex = 2;
             txtID.Text = "아이디";
             txtID.Enter += txtID_Enter;
+            txtID.KeyDown += txtID_KeyDown;
             txtID.Leave += txtID_Leave;
+            // 
+            // lblErrorMsg
+            // 
+            lblErrorMsg.AutoSize = true;
+            lblErrorMsg.ForeColor = Color.Red;
+            lblErrorMsg.Location = new Point(146, 496);
+            lblErrorMsg.Name = "lblErrorMsg";
+            lblErrorMsg.Size = new Size(438, 36);
+            lblErrorMsg.TabIndex = 5;
+            lblErrorMsg.Text = "ID 또는 비밀번호가 잘못되었습니다.";
+            lblErrorMsg.Visible = false;
+            lblErrorMsg.VisibleChanged += label1_VisibleChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(15F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(760, 741);
+            Controls.Add(lblErrorMsg);
             Controls.Add(txtID);
             Controls.Add(btnLogin);
             Controls.Add(txtPW);
@@ -100,5 +116,6 @@
         private TextBox txtPW;
         private Button btnLogin;
         private TextBox txtID;
+        private Label lblErrorMsg;
     }
 }
