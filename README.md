@@ -16,7 +16,8 @@
 ## 실행화면 (과제1)
 - 과제1 코드의 실행 스크린샷 
 
-![과제1 실행화면](img/screenshot-1.png)
+![과제1 실행화면](img/sc1.png)
+![과제1 실행화면](img/sc1-1.png)
 - 과제내용
  - label, textbox, button의 위치와 크기를 적절히 조절하여 로그인 스크린 디자인하기
  - 텍스트박스에 placeholder 기능 구현합니다.
