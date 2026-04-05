@@ -3,10 +3,17 @@ namespace LoginScreen
     public partial class Form1 : Form
     {
         int failCount = 0; // 로그인 실패 횟수 저장
+        bool isLocked = false; // 잠금 여부
+        int lockSeconds = 10; // 잠금 시간(초)
+        private System.Windows.Forms.Timer lockTimer = new System.Windows.Forms.Timer();
 
         public Form1()
         {
             InitializeComponent();
+
+            lockTimer.Interval = 1000; // 1초마다 실행
+            lockTimer.Tick += LockTimer_Tick;
+
         }
 
         private void txtID_Enter(object sender, EventArgs e)
@@ -52,6 +59,12 @@ namespace LoginScreen
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (isLocked)
+            {
+                MessageBox.Show("현재 로그인 시도가 잠겨 있습니다. 잠시 후 다시 시도하세요.");
+                return;
+            }
+
             string inputID = txtID.Text;
             string inputPW = txtPW.Text;
 
@@ -59,18 +72,26 @@ namespace LoginScreen
             {
                 MessageBox.Show("로그인성공!");
                 lblErrorMsg.Visible = false;
-
-                // 성공하면 실패 횟수 초기화
-                failCount = 0;
+                failCount = 0; // 성공 시 실패 횟수 초기화
             }
             else
             {
                 lblErrorMsg.Visible = true;
-                failCount++; // 실패 횟수 증가
+                failCount++;
 
                 if (failCount >= 5)
                 {
-                    MessageBox.Show("로그인을 5번 실패하셨습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("로그인을 5번 실패하셨습니다. 10초 동안 로그인이 제한됩니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    // 잠금 시작
+                    isLocked = true;
+                    lockSeconds = 10;
+                    lockTimer.Start();
+
+                    // 비밀번호창 초기화 및 빨간 글씨로 카운트다운 표시
+                    txtPW.UseSystemPasswordChar = false;
+                    txtPW.Text = lockSeconds.ToString() + "초 후 다시 시도하세요";
+                    txtPW.ForeColor = Color.Red;
                 }
             }
         }
@@ -118,6 +139,27 @@ namespace LoginScreen
         {
             // 현재 상태 반대로 토글
             txtPW.UseSystemPasswordChar = !txtPW.UseSystemPasswordChar;
+        }
+        private void LockTimer_Tick(object sender, EventArgs e)
+        {
+            lockSeconds--;
+
+            if (lockSeconds > 0)
+            {
+                txtPW.Text = lockSeconds.ToString() + "초 후 다시 시도하세요";
+            }
+            else
+            {
+                // 잠금 해제
+                lockTimer.Stop();
+                isLocked = false;
+                failCount = 0;
+
+                // 비밀번호창 초기화
+                txtPW.Text = "패스워드";
+                txtPW.ForeColor = Color.Silver;
+                txtPW.UseSystemPasswordChar = false;
+            }
         }
     }
 }
