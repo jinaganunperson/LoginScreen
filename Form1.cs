@@ -2,6 +2,8 @@ namespace LoginScreen
 {
     public partial class Form1 : Form
     {
+        int failCount = 0; // 로그인 실패 횟수 저장
+
         public Form1()
         {
             InitializeComponent();
@@ -52,17 +54,24 @@ namespace LoginScreen
         {
             string inputID = txtID.Text;
             string inputPW = txtPW.Text;
+
             if (inputID == myID && inputPW == myPW)
             {
                 MessageBox.Show("로그인성공!");
-
                 lblErrorMsg.Visible = false;
+
+                // 성공하면 실패 횟수 초기화
+                failCount = 0;
             }
             else
             {
-                //MessageBox.Show("로그인실패~");
-                //MessageBox.Show("아이디 또는 패스워드가 잘못 입력되었습니다.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lblErrorMsg.Visible = true;
+                failCount++; // 실패 횟수 증가
+
+                if (failCount >= 5)
+                {
+                    MessageBox.Show("로그인을 5번 실패하셨습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
