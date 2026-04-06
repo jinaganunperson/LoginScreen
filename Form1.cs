@@ -68,6 +68,14 @@ namespace LoginScreen
             string inputID = txtID.Text;
             string inputPW = txtPW.Text;
 
+            // 비밀번호 길이 검사
+            if (inputPW.Length < 8)
+            {
+                lblerror.Text = "비밀번호는 8자 이상이어야 합니다.";
+                lblerror.Visible = true;
+                return;
+            }
+
             if (inputID == myID && inputPW == myPW)
             {
                 MessageBox.Show("로그인성공!");

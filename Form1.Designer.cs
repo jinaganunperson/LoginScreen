@@ -35,6 +35,7 @@
             lblErrorMsg = new Label();
             btnRemove = new Button();
             btnvisible = new Button();
+            lblerror = new Label();
             SuspendLayout();
             // 
             // lblAppName
@@ -119,11 +120,23 @@
             btnvisible.UseVisualStyleBackColor = true;
             btnvisible.Click += btnvisible_Click;
             // 
+            // lblerror
+            // 
+            lblerror.AutoSize = true;
+            lblerror.ForeColor = Color.Red;
+            lblerror.Location = new Point(146, 540);
+            lblerror.Name = "lblerror";
+            lblerror.Size = new Size(426, 36);
+            lblerror.TabIndex = 8;
+            lblerror.Text = "비밀번호를 8자 이상 입력해주세요.";
+            lblerror.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(15F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(760, 741);
+            Controls.Add(lblerror);
             Controls.Add(btnvisible);
             Controls.Add(btnRemove);
             Controls.Add(lblErrorMsg);
@@ -146,5 +159,6 @@
         private Label lblErrorMsg;
         private Button btnRemove;
         private Button btnvisible;
+        private Label lblerror;
     }
 }
