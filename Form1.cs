@@ -161,5 +161,15 @@ namespace LoginScreen
                 txtPW.UseSystemPasswordChar = false;
             }
         }
+
+        private void txtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 한글 입력 차단
+            if (char.GetUnicodeCategory(e.KeyChar) == System.Globalization.UnicodeCategory.OtherLetter)
+            {
+                e.Handled = true; // 입력 무효화
+            }
+
+        }
     }
 }

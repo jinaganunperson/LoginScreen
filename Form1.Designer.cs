@@ -82,6 +82,7 @@
             txtID.Text = "아이디";
             txtID.Enter += txtID_Enter;
             txtID.KeyDown += txtID_KeyDown;
+            txtID.KeyPress += txtID_KeyPress;
             txtID.Leave += txtID_Leave;
             // 
             // lblErrorMsg
