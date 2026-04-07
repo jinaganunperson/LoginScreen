@@ -101,7 +101,7 @@
             // btnRemove
             // 
             btnRemove.Font = new Font("맑은 고딕", 12F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            btnRemove.Location = new Point(579, 496);
+            btnRemove.Location = new Point(523, 579);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(178, 67);
             btnRemove.TabIndex = 6;
@@ -112,7 +112,7 @@
             // btnvisible
             // 
             btnvisible.Font = new Font("나눔고딕 ExtraBold", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnvisible.Location = new Point(641, 416);
+            btnvisible.Location = new Point(641, 406);
             btnvisible.Name = "btnvisible";
             btnvisible.Size = new Size(107, 56);
             btnvisible.TabIndex = 7;
@@ -135,6 +135,7 @@
             // 
             AutoScaleDimensions = new SizeF(15F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(760, 741);
             Controls.Add(lblerror);
             Controls.Add(btnvisible);
@@ -146,6 +147,7 @@
             Controls.Add(lblAppName);
             Name = "Form1";
             Text = "Login Screen";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
